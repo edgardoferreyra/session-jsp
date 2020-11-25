@@ -7,6 +7,27 @@
 <title>memberArea</title>
 </head>
 <body>
-	memberArea!!
+
+<%
+String username = null, sessionID = null;
+Cookie[] cookies = request.getCookies();
+if(cookies != null){
+	for(Cookie cookie : cookies){
+		if(cookie.getName().equals("username")){
+			username = cookie.getValue();
+		}
+		if(cookie.getName().equals("JSESSIONID")){
+			sessionID = cookie.getValue();
+		}
+	}
+}
+if(sessionID == null || username == null){
+	response.sendRedirect("login.jsp");
+}
+%>
+Username: <%=username %><br/>
+Current session: <%=sessionID %><br/>
+memberArea!!
+
 </body>
 </html>
