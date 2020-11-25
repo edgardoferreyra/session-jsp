@@ -3,7 +3,7 @@ package com.edgardoferreyra.servlets;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
+//import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,9 +43,20 @@ public class SiteController extends HttpServlet {
 			request.getSession().invalidate();
 			HttpSession newSession = request.getSession(true);
 			newSession.setMaxInactiveInterval(300);
-			Cookie cUsername = new Cookie("username",username);
-			response.addCookie(cUsername);
+			
+			newSession.setAttribute("username", username);
+			
 			response.sendRedirect("memberArea.jsp");
+		
+			
+		/*	Se crea una cookie para almacenar los datos de la sesión pero no se recomienda hacer esto
+		 * debido a que la cookies deben utilizarse para brindar una mejor experiencia de usuario
+		 * almacenando las preferencias de los usuarios que hayan elegido en la página web.
+		 * 
+			Cookie cUsername = new Cookie("username",username);
+			response.addCookie(cUsername);			
+		*/
+			
 		}else {
 			response.sendRedirect("login.jsp");
 		}
