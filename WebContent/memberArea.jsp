@@ -12,7 +12,7 @@
 String username = null, sessionID = null;
 
 if(request.getSession().getAttribute("username") == null){
-	response.sendRedirect("login.jsp");
+	response.sendRedirect(request.getContextPath()+"/SiteController?action=login");
 }else{
 	username = request.getSession().getAttribute("username").toString();
 	sessionID = request.getSession().getId();

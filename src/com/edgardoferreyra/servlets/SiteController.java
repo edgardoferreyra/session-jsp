@@ -42,6 +42,15 @@ public class SiteController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String action = request.getParameter("action");
+		switch(action) {
+		case "loginSubmit":
+			authenticate(request,response);
+			break;
+		}
+	}
+	
+	public void authenticate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
@@ -52,7 +61,7 @@ public class SiteController extends HttpServlet {
 			
 			newSession.setAttribute("username", username);
 			
-			response.sendRedirect("memberArea.jsp");
+			response.sendRedirect(request.getContextPath()+"/MemberAreaController?action=memberArea");
 		
 			
 		/*	Se crea una cookie para almacenar los datos de la sesión pero no se recomienda hacer esto
@@ -64,7 +73,7 @@ public class SiteController extends HttpServlet {
 		*/
 			
 		}else {
-			response.sendRedirect("login.jsp");
+			response.sendRedirect(request.getContextPath()+"/SiteController?action=login");
 		}
 	}
 

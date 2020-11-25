@@ -10,6 +10,7 @@
 <form action="<%= request.getContextPath()%>/SiteController" method="post">
 	User: <input type="text" name="username"><br/>
 	Password: <input type="password" name="password"><br/>
+	<input type="hidden" name="action" value="loginSubmit">
 	<input type="submit" value="submit">
 	
 </form>

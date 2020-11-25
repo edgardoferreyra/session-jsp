@@ -44,7 +44,10 @@ public class MemberAreaController extends HttpServlet {
 			}
 			*/
 			
-			response.sendRedirect("login.jsp");
+			response.sendRedirect(request.getContextPath()+"/SiteController?action=login");
+			break;
+		case "memberArea":
+			request.getRequestDispatcher("memberArea.jsp").forward(request, response);
 			break;
 		}
 	}
