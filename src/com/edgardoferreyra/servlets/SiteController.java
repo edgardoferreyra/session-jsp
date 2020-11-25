@@ -28,8 +28,14 @@ public class SiteController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String action = request.getParameter("action");
+		switch(action) {
+		case "login":
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+			break;
+		default:
+				break;
+		}
 	}
 
 	/**
