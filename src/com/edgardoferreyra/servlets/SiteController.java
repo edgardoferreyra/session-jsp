@@ -60,8 +60,11 @@ public class SiteController extends HttpServlet {
 			newSession.setMaxInactiveInterval(300);
 			
 			newSession.setAttribute("username", username);
+			//La siguiente línea es para crear un session ID si las cookies están deshabilitadas en el navegador
+			String encode = response.encodeURL(request.getContextPath());
 			
-			response.sendRedirect(request.getContextPath()+"/MemberAreaController?action=memberArea");
+			
+			response.sendRedirect(encode+"/MemberAreaController?action=memberArea");
 		
 			
 		/*	Se crea una cookie para almacenar los datos de la sesión pero no se recomienda hacer esto
