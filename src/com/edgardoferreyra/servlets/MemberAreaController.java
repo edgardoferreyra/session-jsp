@@ -30,6 +30,7 @@ public class MemberAreaController extends HttpServlet {
 		String action = request.getParameter("action");
 		switch (action) {
 		case "destroy":
+			//Crea un nuevo id y borra todos los atributos de la sesión anterior
 			request.getSession().invalidate();
 			
 			/*
@@ -49,7 +50,13 @@ public class MemberAreaController extends HttpServlet {
 		case "memberArea":
 			request.getRequestDispatcher("memberArea.jsp").forward(request, response);
 			break;
+		case "membersOnly":
+			request.getRequestDispatcher("membersOnly.jsp").forward(request, response);
+			break;
+		default:
+			break;
 		}
+		
 	}
 
 	/**
